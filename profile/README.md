@@ -12,32 +12,40 @@ Clawland is an open-source ecosystem of AI Agents designed to run on hardware ra
 |---------|----------|-----|---------------|---------|
 | [**picclaw**](https://github.com/Clawland-AI/picclaw) | Go | <10MB | $10 board | Ultra-lightweight edge AI Agent |
 | [**moltclaw**](https://github.com/Clawland-AI/moltclaw) | TypeScript | >1GB | Cloud / Mac Mini | Full-featured cloud AI Gateway with multi-Agent routing |
-| [**nanoclaw**](https://github.com/Clawland-AI/nanoclaw) | Python | >100MB | $50 SBC | Mid-weight Agent / Regional gateway |
+| [**nanoclaw**](https://github.com/Clawland-AI/nanoclaw) | Python | >100MB | $50 SBC | Mid-weight Agent with rich Python ecosystem |
 | [**microclaw**](https://github.com/Clawland-AI/microclaw) | C / Rust | <1MB | $2-5 MCU | Sensor-level micro Agent |
+
+## Ecosystem — OpenClaw Integration
+
+Clawland is built to extend the [**OpenClaw**](https://github.com/openclaw/openclaw) open-source AI assistant ecosystem. OpenClaw serves as the **cloud brain**, while Clawland agents act as the **edge hands and feet**.
+
+```
+  ☁️ OpenClaw (Cloud Brain)          🤖 Clawland (Edge Hands & Feet)
+  ┌──────────────────────┐          ┌──────────────────────────────┐
+  │ openclaw/openclaw     │  ◄────► │ picclaw   — $10 Edge Agent   │
+  │ 196k+ ⭐ MIT          │  sync   │ nanoclaw  — $50 SBC Gateway  │
+  │ Multi-channel Gateway │  ────►  │ microclaw — $2 MCU Sensor    │
+  └──────────────────────┘          │ moltclaw  — Cloud Gateway    │
+         ▲                          └──────────────────────────────┘
+         │ fork
+  ┌──────┴───────────────┐
+  │ Clawland-AI/openclaw  │ ← Tracked fork for upstream sync
+  │ Edge integration      │   and contribution bridge
+  └──────────────────────┘
+```
+
+| Project | Role |
+|---------|------|
+| [**openclaw**](https://github.com/Clawland-AI/openclaw) _(fork)_ | Upstream tracking & contribution bridge to [openclaw/openclaw](https://github.com/openclaw/openclaw) |
+| [**moltclaw**](https://github.com/Clawland-AI/moltclaw) | Clawland's own L3 Cloud Gateway — Fleet integration, Dashboard, Edge API |
 
 ## Infrastructure
 
 | Project | Purpose |
 |---------|---------|
-| [**clawland-fleet**](https://github.com/Clawland-AI/clawland-fleet) | Cloud-Edge orchestration — Fleet Manager, Edge API, Reporter, Event Hub |
-| [**clawland-deploy**](https://github.com/Clawland-AI/clawland-deploy) | One-click deployment — Ansible, Docker Compose, pre-built images |
-| [**clawland-dashboard**](https://github.com/Clawland-AI/clawland-dashboard) | Fleet visualization — real-time node map, alert timeline, sensor charts |
-
-## Hardware & Skills Ecosystem
-
-| Project | Purpose |
-|---------|---------|
-| [**clawland-kits**](https://github.com/Clawland-AI/clawland-kits) | Open hardware sensor kit designs — BOMs, wiring, drivers, pre-built images |
+| [**clawland-fleet**](https://github.com/Clawland-AI/clawland-fleet) | Cloud-Edge orchestration — Fleet Manager, Edge API, Reporter |
+| [**clawland-kits**](https://github.com/Clawland-AI/clawland-kits) | Hardware sensor kit designs — BOMs, wiring, drivers, pre-built images |
 | [**clawland-skills**](https://github.com/Clawland-AI/clawland-skills) | Community skill marketplace — plug-and-play AI capabilities |
-| [**clawland-drivers**](https://github.com/Clawland-AI/clawland-drivers) | Unified sensor driver library — GPIO/I2C/SPI/Serial Python drivers |
-
-## Integrations & Tools
-
-| Project | Purpose |
-|---------|---------|
-| [**clawland-homebridge**](https://github.com/Clawland-AI/clawland-homebridge) | Smart home bridge — HomeKit / Home Assistant integration |
-| [**clawland-grafana**](https://github.com/Clawland-AI/clawland-grafana) | Grafana data source plugin — sensor metrics and fleet health |
-| [**clawland-ai.github.io**](https://github.com/Clawland-AI/clawland-ai.github.io) | Documentation website — guides, API docs, scenario showcases |
 
 ## What Can You Build?
 
@@ -47,9 +55,8 @@ Deploy a **$10 board + $5 sensor + Picclaw** and replace:
 - **$30,000/yr** fish pond patrol worker — with a $133 aquaculture guardian
 - **$18,000/yr** greenhouse attendant — with a $95 smart farming kit
 - **$900/yr** elderly care subscription — with a $30 safety guardian
-- **$3,200/yr** predictive maintenance service — with a $32 equipment doctor
 
-> Every scenario above is documented with full hardware BOM, wiring diagrams, implementation logic, and cost comparison. See [clawland-kits](https://github.com/Clawland-AI/clawland-kits).
+> Every scenario above is documented with full hardware BOM, wiring diagrams, PicoClaw implementation logic, and cost comparison. See [clawland-kits](https://github.com/Clawland-AI/clawland-kits).
 
 ## Build to Earn
 
@@ -60,32 +67,6 @@ Clawland is not donation-ware. **Core contributors share 20% of all product reve
 - First 10 Core Maintainers get an additional 0.5% lifetime revenue share
 
 Read the full terms: [CONTRIBUTOR-REVENUE-SHARE.md](https://github.com/Clawland-AI/.github/blob/main/CONTRIBUTOR-REVENUE-SHARE.md)
-
-## Architecture
-
-```
-         ☁️ Cloud (moltclaw)
-         ┌──────────────────────┐
-         │  AI Gateway + Fleet  │
-         │  Manager + Decision  │
-         │  Engine + Dashboard  │
-         └──────────┬───────────┘
-                    │
-         ═══ Internet / 4G / LoRa ═══
-                    │
-    ┌───────────────┼───────────────┐
-    │               │               │
-┌───┴───┐      ┌───┴───┐      ┌───┴───┐
-│  L2   │      │  L2   │      │  L2   │  Regional
-│nanoclaw│      │nanoclaw│      │nanoclaw│  Gateways
-└───┬───┘      └───┬───┘      └───┬───┘  ($50 SBC)
-    │               │               │
-  ┌─┼─┐          ┌─┼─┐          ┌─┼─┐
-  │ │ │          │ │ │          │ │ │    Edge Nodes
-  ■ ■ ■          ■ ■ ■          ■ ■ ■    ($10 board)
- picclaw        picclaw        picclaw
- + sensors      + sensors      + sensors
-```
 
 ## Get Involved
 
@@ -100,14 +81,10 @@ Clawland is governed by a Technical Steering Committee (TSC). Major decisions go
 
 ## License
 
-| Layer | License |
-|-------|---------|
-| Core agents (picclaw, moltclaw, nanoclaw, microclaw) | **Apache 2.0** |
-| Cloud orchestration (clawland-fleet, clawland-dashboard) | **BSL 1.1** → Apache 2.0 after 4 years |
-| Hardware designs (clawland-kits) | **CERN-OHL-S-2.0** |
-| Skills & integrations (clawland-skills, clawland-homebridge) | **MIT** |
-| Sensor drivers (clawland-drivers, clawland-grafana) | **Apache 2.0** |
-| Documentation (clawland-ai.github.io) | **CC BY-SA 4.0** |
+Core agents (picclaw, moltclaw, nanoclaw, microclaw): **Apache 2.0**
+Cloud orchestration (clawland-fleet): **BSL 1.1** (converts to Apache 2.0 after 4 years)
+Hardware designs (clawland-kits): **CERN-OHL-S-2.0**
+Skills (clawland-skills): **MIT**
 
 ---
 
