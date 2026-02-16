@@ -44,8 +44,11 @@ Clawland is built to extend the [**OpenClaw**](https://github.com/openclaw/openc
 | Project | Purpose |
 |---------|---------|
 | [**clawland-fleet**](https://github.com/Clawland-AI/clawland-fleet) | Cloud-Edge orchestration — Fleet Manager, Edge API, Reporter |
-| [**clawland-kits**](https://github.com/Clawland-AI/clawland-kits) | Hardware sensor kit designs — BOMs, wiring, drivers, pre-built images |
+| [**clawland-deploy**](https://github.com/Clawland-AI/clawland-deploy) | One-click deployment — Ansible Playbooks, Docker Compose |
+| [**clawland-kits**](https://github.com/Clawland-AI/clawland-kits) | Hardware sensor kit designs — BOMs, wiring, drivers |
 | [**clawland-skills**](https://github.com/Clawland-AI/clawland-skills) | Community skill marketplace — plug-and-play AI capabilities |
+| [**clawland-drivers**](https://github.com/Clawland-AI/clawland-drivers) | Unified sensor driver library — GPIO/I2C/SPI/Serial |
+| [**clawland-dashboard**](https://github.com/Clawland-AI/clawland-dashboard) | Fleet visualization dashboard — real-time node map + alerts |
 
 ## What Can You Build?
 
